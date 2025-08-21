@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silksong Countdown</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #0d0d0d 0%, #000000 100%);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 0 0 10px #7f00ff, 0 0 20px #7f00ff, 0 0 30px #7f00ff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #ff77ff;
+            text-shadow: 0 0 15px #ff77ff, 0 0 30px #ff00ff;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            display: flex;
+            gap: 15px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 90px;
+            text-align: center;
+            box-shadow: 0 0 10px #ff77ff;
+            transition: all 0.2s;
+        }
+
+        .time-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ff00ff;
+        }
+
+        .label {
+            font-size: 0.5em;
+            color: #ff77ff;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Silksong Countdown</h1>
+    <div class="countdown" id="countdown">
+        Loading...
+    </div>
+
+    <script>
+        const releaseDate = new Date("September 4, 2025 00:00:00").getTime();
+        const countdownElement = document.getElementById("countdown");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = releaseDate - now;
+
+            if (distance <= 0) {
+                countdownElement.innerHTML = "<div style='font-size:1.5em;'>Silksong is out!</div>";
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `
+                <div class="time-box">
+                    ${days}<div class="label">DAYS</div>
+                </div>
+                <div class="time-box">
+                    ${hours}<div class="label">HOURS</div>
+                </div>
+                <div class="time-box">
+                    ${minutes}<div class="label">MINUTES</div>
+                </div>
+                <div class="time-box">
+                    ${seconds}<div class="label">SECONDS</div>
+                </div>
+            `;
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
