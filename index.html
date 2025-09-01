@@ -31,6 +31,7 @@
             font-size: 1.2em;
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .time-box {
@@ -62,6 +63,7 @@
     </div>
 
     <script>
+        // New target date: 4th September 2025, 17:00 (5 PM)
         const releaseDate = new Date("September 4, 2025 17:00:00").getTime();
         const countdownElement = document.getElementById("countdown");
 
@@ -79,7 +81,7 @@
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            const milliseconds = Math.floor((distance % (1000);
+            const milliseconds = distance % 1000;
 
             countdownElement.innerHTML = `
                 <div class="time-box">
@@ -95,14 +97,14 @@
                     ${seconds}<div class="label">SECONDS</div>
                 </div>
                 <div class="time-box">
-                    ${milliseconds}<div class="label">MILLISECONDS</div>
+                    ${Math.floor(milliseconds / 10).toString().padStart(2, '0')}<div class="label">MILLISEC</div>
                 </div>
             `;
         }
 
+        // Refresh fast enough for milliseconds
         const interval = setInterval(updateCountdown, 10);
         updateCountdown();
     </script>
 </body>
 </html>
-
