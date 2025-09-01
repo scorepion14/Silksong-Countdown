@@ -62,7 +62,7 @@
     </div>
 
     <script>
-        const releaseDate = new Date("September 4, 2025 00:00:00").getTime();
+        const releaseDate = new Date("September 4, 2025 17:00:00").getTime();
         const countdownElement = document.getElementById("countdown");
 
         function updateCountdown() {
@@ -79,6 +79,7 @@
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor((distance % (1000);
 
             countdownElement.innerHTML = `
                 <div class="time-box">
@@ -93,11 +94,15 @@
                 <div class="time-box">
                     ${seconds}<div class="label">SECONDS</div>
                 </div>
+                <div class="time-box">
+                    ${milliseconds}<div class="label">MILLISECONDS</div>
+                </div>
             `;
         }
 
-        const interval = setInterval(updateCountdown, 1000);
+        const interval = setInterval(updateCountdown, 10);
         updateCountdown();
     </script>
 </body>
 </html>
+
